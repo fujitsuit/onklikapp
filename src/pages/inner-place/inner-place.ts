@@ -8,6 +8,7 @@ import { InnerPlaceSharePage } from '../inner-place-share/inner-place-share';
 import { PlaceBookPage } from '../place-book/place-book';
 import { PlaceBookSubmitPage } from '../place-book-submit/place-book-submit';
 import { TourPage } from '../tour/tour';
+
 import { AuthService } from '../../providers/auth-service';
 import { CallNumber } from 'ionic-native';
 /*
@@ -100,10 +101,13 @@ export class InnerPlacePage {
 
 
 
-	onScroll() {
-		let $segments = document.getElementById('segments');
-		let $segmentsStart = document.getElementById('segments-start');
-		let scrollTop = this.contentq.getContentDimensions().scrollTop;
+	  onScroll() {
+	  	let $segments = document.getElementById('segments');
+	  	let $segmentsStart = document.getElementById('segments-start');
+
+
+	  	let scrollTop = this.contentq.getContentDimensions().scrollTop;
+	  		
 		let segmentsClasses = $segments.classList;
 
 		if($segmentsStart.offsetTop < scrollTop){
@@ -112,7 +116,7 @@ export class InnerPlacePage {
 			segmentsClasses.remove('sticky');
 		}
 
-	}
+	  }
 
 	onSegmentChanged(segmentButton) {
 		this.slides.slideTo(segmentButton.value);

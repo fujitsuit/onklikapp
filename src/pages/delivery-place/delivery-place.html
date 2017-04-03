@@ -78,17 +78,19 @@
 				<div class="place-slide">
 					<div class="place-desc">
 						<div class="place-char">
-							<div *ngFor="let char of deliveryplace.char" class="place-char-row">
-								<div class="place-char-key">
-									{{char.label}}<i class="char-icon char-icon-{{char.iconName}}"></i>
-								</div>
-								<div *ngIf="isArrayO(char.value)" class="place-char-value">
-									<span *ngFor="let value of char.value">
-										{{value}}
-									</span>
-								</div>
-								<div *ngIf="isStringO(char.value)" class="place-char-value">
-									{{char.value}}
+							<div *ngFor="let char of deliveryplace.char" >
+								<div *ngIf="char.value" class="place-char-row">
+									<div class="place-char-key">
+										{{char.label}}<i class="char-icon char-icon-{{char.iconName}}"></i>
+									</div>
+									<div *ngIf="isArrayO(char.value)" class="place-char-value">
+										<span *ngFor="let value of char.value">
+											{{value}}
+										</span>
+									</div>
+									<div *ngIf="isStringO(char.value)" class="place-char-value">
+										{{char.value}}
+									</div>
 								</div>
 							</div>
 						</div>

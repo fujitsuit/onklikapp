@@ -24,6 +24,15 @@ page-delivery {
 			line-height: 40;
 			box-shadow:none;
 		}
+		.delivery{
+			&-place{
+				ion-thumbnail{
+					img{
+						border-radius: 50%;
+					}
+				}
+			}
+		}
 		.card{
 			&-status{
 				font-family: 'Roboto';

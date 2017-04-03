@@ -1,0 +1,92 @@
+<!--
+  Generated template for the PlaceBookSubmit page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header class="app-header">
+  <ion-navbar>
+    <button ion-button menuToggle class="app-menu-btn">
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title class="app-logo"><img src="assets/logo.svg"></ion-title>
+    <ion-buttons class="md" end>
+      <button ion-button icon-only>
+        <ion-icon name="more"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content >
+	<div class="place-bg">
+		<div class="place-desc">
+			
+			<ion-card>
+				<ion-card-header>
+				    Информация о бронировании
+				</ion-card-header>
+
+				<ion-card-content>
+			    	<ion-row>
+			    		<ion-col col-6>
+			    			<b>Зал:</b>
+			    		</ion-col>
+			    		<ion-col col-6>
+			    			{{bookForm.bookZone}}
+			    		</ion-col>
+			    	</ion-row>
+			    	<ion-row>
+			    		<ion-col col-6>
+			    			<b>Столик:</b>
+			    		</ion-col>
+			    		<ion-col col-6>
+			    			{{bookForm.bookTable}} столик 
+			    		</ion-col>
+			    	</ion-row>
+			    	<ion-row>
+			    		<ion-col col-6>
+			    			<b>День:</b>
+			    		</ion-col>
+			    		<ion-col col-6>
+			    			{{bookForm.bookDay | date : "dd MMMM"}}
+			    		</ion-col>
+			    	</ion-row>
+			    	<ion-row>
+			    		<ion-col col-6>
+			    			<b>Время:</b>
+			    		</ion-col>
+			    		<ion-col col-6>
+			    			{{bookForm.bookTime | date: "HH:mm"}}
+			    		</ion-col>
+			    	</ion-row>
+				</ion-card-content>
+
+			</ion-card>
+
+			
+			<div class="book-form">
+				<h2>
+					Подтвердите бронирование
+				</h2>
+				<ion-item>
+					<ion-input required type="text" placeholder="Имя" [(ngModel)]='bookForm.userName'></ion-input>
+				</ion-item>
+				<ion-item>
+					<ion-input required type="tel" placeholder="Телефон" [(ngModel)]='bookForm.userName'></ion-input>
+				</ion-item>
+				<ion-item>
+					<ion-input required type="email" placeholder="Email" [(ngModel)]='bookForm.userName'></ion-input>
+				</ion-item>
+				<ion-item>
+					<ion-textarea placeholder="Коментарий..." [(ngModel)]='bookForm.userMessage'></ion-textarea>
+				</ion-item>
+				<div class="book-submit">
+					<button (click)="bookSubmit(placeId)">Забронировать</button> 
+				</div>
+			</div>
+
+		</div>
+	</div>
+</ion-content>

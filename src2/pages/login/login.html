@@ -1,0 +1,41 @@
+<!--
+  Generated template for the Login page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+<ion-content class="login" id="login">
+	<div class="login-block">
+		<div class="login-logo">
+			<img src="assets/logo.svg" alt="">
+		</div>
+		<form (ngSubmit)="login()" #registerForm="ngForm">
+		<div class="login-form">
+			<div class="login-title">
+				Вход
+			</div>
+			<div class="login-input-list">
+				<div class="login-input-row">
+					<div class="login-input-icon login-input-icon-user"></div>
+					<input type="text" placeholder="E-mail адрес" class="login-input-item"  name="email"  [(ngModel)]="registerCredentials.email">
+				</div>
+				<div class="login-input-row">
+					<div class="login-input-icon login-input-icon-lock"></div>
+					<input type="password" placeholder="password" class="login-input-item" name="password" [(ngModel)]="registerCredentials.password" >
+				</div>
+			</div>
+			<div class="login-footer">
+				<button   type="submit"  [disabled]="!registerForm.form.valid" class="login-submit">Вход</button>
+			</div>
+
+		</div>
+		<div class="login-forgot"> 
+			<ion-item>Забыли пароль?</ion-item>
+		</div>
+		<div class="login-register">
+			<ion-item>Регистрация</ion-item>
+		</div>
+		</form>
+	</div> 
+</ion-content>

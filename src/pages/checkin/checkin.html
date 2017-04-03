@@ -1,0 +1,51 @@
+
+<ion-header class="app-header">
+  <ion-navbar>
+    <button ion-button menuToggle="left" class="app-menu-btn">
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title class="app-logo"><img src="assets/logo.svg"></ion-title>
+    <ion-buttons end>
+      <button class="app-menu-btn" ion-button icon-only menuToggle="deliveryFilter">
+        <ion-icon name="options"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content #mycontent>
+  <ion-card class="c-place" *ngFor="let place of places">
+      <img src="{{place.src}}"/>
+      <ion-grid>
+        <ion-row>
+          <ion-col class="c-place-desc" width-5>
+            <div class="card-title c-place-title">{{place.title}}</div>
+            <div class="card-subtitle c-place-address">{{place.address}}</div>
+            <div class="card-status">
+              {{place.id}} метров
+            </div > 
+            <div class="card-rating c-place-rating">
+              <div class="c-place-rating-stars">
+                <div class="c-place-star" *ngFor="let item of getStars(5, place.star)">
+                  <ion-icon *ngIf="item" name="star"></ion-icon>
+                  <ion-icon *ngIf="!item" name="star-outline"></ion-icon>
+                </div>
+              </div>
+              <div class="card-rating-count">
+                ({{place.count}})
+              </div>
+            </div>
+          </ion-col>
+          <ion-col class="c-place-desc" width-5>
+            <ion-buttons>
+              <button ion-button block class="c-place-btn hollow" >
+                <ion-icon name="checkmark-circle-outline"></ion-icon> 
+                Check in
+              </button>
+            </ion-buttons>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+  </ion-card>
+</ion-content>

@@ -1,0 +1,59 @@
+page-delivery {
+	font-family: 'Roboto',sans-serif;
+	font-size: 16px;
+	.content, .content-ios,.content-md,.content-md{
+		background-image: url(../assets/bg/bg-home.jpg);
+    	background-size: cover;
+    	min-height: 100%;
+    	.searchbar-md, .searchbar-ios, .searchbar-wp{
+			height: 60px;
+			background: none;
+			padding: 10px 20px;
+		}
+		.searchbar-input-container{
+		border: none;
+		}
+		.searchbar-search-icon{
+			display: none;
+		}
+		.searchbar-input{
+			padding: 0 15px !important;
+			border: 1px solid #cccccc;
+			border-radius: 4px;
+			height: 40px;
+			line-height: 40;
+			box-shadow:none;
+		}
+		.card{
+			&-status{
+				font-family: 'Roboto';
+				font-weight: bold;
+				&-closed{
+					color:#ff0202;
+				}
+				&-open{
+					color:#51c93a;
+				}
+			}
+		}
+		.c{
+			&-place{
+				&-rating{
+					display: flex;
+					align-items:center;
+					&-stars{
+						display: flex;
+					}
+					&-count{
+						line-height: 18px;
+						vertical-align: bottom;
+					}
+				}
+				&-star{
+					color: #ffba00;
+					margin-right:5px;
+				}
+			}
+		}
+	}
+}

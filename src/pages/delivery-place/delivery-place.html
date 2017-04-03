@@ -1,0 +1,202 @@
+<!--
+  Generated template for the InnerPlace page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header class="app-header">
+  <ion-navbar>
+    <button ion-button menuToggle class="app-menu-btn">
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title class="app-logo"><img src="assets/logo.svg"></ion-title>
+<!--     <ion-buttons class="md" end>
+      <button ion-button icon-only>
+        <ion-icon name="more"></ion-icon>
+      </button>
+    </ion-buttons> -->
+  </ion-navbar>
+</ion-header>
+<ion-content #content (ionScroll)="onScroll()"> 
+	<div class="place-bg">
+		<div class="place-basic">
+	  		<div class="place-header parallax">
+	  		<ion-item class="delivery-place">
+	  		<ion-thumbnail item-left >
+				<img src="{{deliveryplace.src}}" alt="{{deliveryplace.title}}">
+			</ion-thumbnail>
+			<h2>{{deliveryplace.title}}</h2>
+			<div [ngClass]="(deliveryplace.open) ? 'card-status-open' : 'card-status-closed'" [innerHTML]="(deliveryplace.open) ? 'открыто' : 'закрыто'" 		    			class="card-status"></div>
+			<div class="card-rating c-place-rating">
+				<div class="c-place-rating-stars">
+					<div class="c-place-star" *ngFor="let item of getStars(5, deliveryplace.star)">
+						<ion-icon *ngIf="item" name="star"></ion-icon>
+						<ion-icon *ngIf="!item" name="star-outline"></ion-icon>
+					</div>
+				</div>
+				<div class="card-rating-count">
+    				({{deliveryplace.count}})
+				</div>
+			</div>
+			</ion-item>
+	  		</div>
+	  		<div class="place-footer">
+				<button ion-button block class="c-place-btn hollow"><i class="ic ic-tel"></i>Позвонить</button>
+	  						<button ion-button block (click)="setFav(deliveryplace.id)" class="c-place-btn favourite hollow">
+	  				<span *ngIf="favourite == true">
+	  					<ion-icon name="star"></ion-icon>
+	  					В избранном
+	  				</span>
+	  				<span *ngIf="favourite == false">
+		  				<ion-icon name="star-outline"></ion-icon>
+	  					В избранное
+	  				</span>
+	  				
+	  			</button>
+	  		</div>
+	  		
+	  	</div>
+	  	<div id="segments-start" class="place-tab-list-wrapper">
+		<ion-segment [(ngModel)]="placeContent" id="segments" class="place-tab-list" (ionChange)="onSegmentChanged($event)">
+			<ion-segment-button class="place-tab-item" value="0">
+				Описание
+			</ion-segment-button>
+			<ion-segment-button class="place-tab-item" value="1">
+				Меню
+			</ion-segment-button>
+			<ion-segment-button class="place-tab-item" value="2">
+				Отзывы
+			</ion-segment-button>
+			<ion-segment-button class="place-tab-item" value="3">
+				Акции
+			</ion-segment-button>
+		</ion-segment>
+		</div>
+		<div class='slider-wrapper'>
+		<ion-slides #mySlider (ionSlideDidChange)="onSlideChanged($event)">
+			<ion-slide>
+				<div class="place-slide">
+					<div class="place-desc">
+						<div class="place-char">
+							<div *ngFor="let char of deliveryplace.char" class="place-char-row">
+								<div class="place-char-key">
+									{{char.label}}<i class="char-icon char-icon-{{char.iconName}}"></i>
+								</div>
+								<div *ngIf="isArrayO(char.value)" class="place-char-value">
+									<span *ngFor="let value of char.value">
+										{{value}}
+									</span>
+								</div>
+								<div *ngIf="isStringO(char.value)" class="place-char-value">
+									{{char.value}}
+								</div>
+							</div>
+						</div>
+						<ion-card class="place-text-block">
+						  <ion-card-header class="place-text-title">
+						    О заведении
+						  </ion-card-header>
+						  <ion-card-content [innerHTML]="deliveryplace.text" class="place-text">
+						    
+						  </ion-card-content>
+						</ion-card>
+					</div>
+				</div>
+			</ion-slide>
+			<ion-slide>
+				<div class="place-desc">
+					<ion-list *ngFor="let category of placeMenuCat.menuCats" class="place-menu">
+						<ion-list-header class="place-menu-title">
+							<ion-item class="place-menu-header {{category.status}}" (click)="loadCatItems(category.menuCatId)">
+								
+							{{ category.menuCatTitle }}
+							</ion-item>
+						</ion-list-header>
+						<ion-list class="place-menu-list" *ngIf="menuItems.menuCatId == category.menuCatId">
+							
+							<ion-card class="place-menu-list-item" *ngFor="let item of menuItems.items" (click)="goInnerPlaceDish(item.id)">
+								<div class="place-dish">
+									<div class="place-dish-img">
+										<img src="{{item.src}}" alt="{{item.label}}">
+									</div>
+									<div class="place-dish-cont">
+										<div class="place-dish-title">
+											{{item.label}}
+										</div>
+										<div class="place-dish-excerpt">
+											{{item.excerpt}}
+										</div>
+										<div class="place-dish-price">
+											<span *ngIf="item.count">{{item.count}} x - </span>
+											{{item.price}} тг
+										</div>
+									</div>
+								</div>
+							</ion-card>
+						</ion-list>
+					</ion-list>
+				</div>
+			</ion-slide>
+			<ion-slide>
+				<div class="place-desc">
+					<div class="place-testi-list">
+						<div *ngFor="let item of testi" class="place-testi-item">
+							<div class="place-testi-avatar">
+								<img src="{{item.avatar}}" alt="">
+							</div>
+							<div [ngClass]="(item.admin) ? 'place-testi-admin' : ''"  class="place-testi-cont">
+								<div class="place-testi-author">
+									{{item.author}}
+								</div>
+								<div class="place-testi-date">
+									{{item.date | date:"dd.MM.yyyy hh:mm"}}
+								</div>
+								<div class="place-testi-text">
+									<span *ngIf="item.reply" class="place-testi-for">Ответ пользователю {{item.reply}}<br></span>
+									<span *ngIf="item.admin" class="place-testi-for">Ответ заведения<br></span>
+									{{item.text}}
+								</div>
+								<div class="place-testi-footer">
+									<button (click)="replyTesti(item.author, item.id)" class="place-testi-reply">Ответить</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<form class="place-testi-add" [formGroup]="newTesti" (ngSubmit)="addTesti()">
+						<ion-label>Оставить отзыв</ion-label>
+						<div class="place-testi-add-wrapper">
+							<ion-item>
+								<ion-textarea #message formControlName="text" placeholder="Ваш отзыв"></ion-textarea>
+							</ion-item>
+							<button type="submit" class="place-testi-add-btn" ion-button>
+								<ion-icon name="add-circle"></ion-icon>
+							</button>
+						</div>
+					</form>
+				</div>
+			</ion-slide>
+			<ion-slide>
+				<div class="place-desc">
+					<ion-list>
+						<ion-card class="place-menu-list-item" *ngFor="let item of shares" (click)="goInnerPlaceShare(item.id)">
+							<div class="place-dish">
+								<div class="place-dish-img">
+									<img src="{{item.src}}" alt="{{item.label}}">
+								</div>
+								<div class="place-dish-cont">
+									<div class="place-dish-title">
+										{{item.label}}
+									</div>
+									<div class="place-dish-excerpt">
+										{{item.excerpt}}
+									</div>
+								</div>
+							</div>
+						</ion-card>
+					</ion-list>
+				</div>
+			</ion-slide>
+		</ion-slides>
+		</div>
+	</div>
+</ion-content>

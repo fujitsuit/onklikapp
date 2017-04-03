@@ -1,0 +1,47 @@
+page-place-book {
+	
+	.content, .content-ios,.content-md,.content-md{
+		background-image: url(../assets/bg/bg-home.jpg);
+		background-size: cover;
+		min-height: 100%;
+		font-family: 'Roboto';
+		ion-slides{
+
+		}
+		
+		.submit-btn{
+			text-align: center;
+			margin-top: 30px;
+			button{
+			    background: #22b54e;
+			    background: linear-gradient(to right, #22b54e 0%, #52c939 100%);
+			    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#22b54e', endColorstr='#52c939',GradientType=1 );
+			    margin-left: 5px;
+			    border-color: #22b54e;
+			    color:#fff;
+		        height: 36px;
+			    font-size: 16px;
+			    line-height: 20px;
+			    padding: 0 50px;
+			    border-radius: 8px;
+			}
+		}
+		ion-slide{
+			ion-item{
+				padding: 0;
+				background-color: #fff;
+				text-align: center;
+				max-height: 236px;
+				min-height: 220px;
+				.item-inner{
+					border-bottom: none;
+					padding-right: 0 !important;
+
+				}
+				ion-label{
+					margin: 0;
+				}
+			}
+		}
+	}
+}

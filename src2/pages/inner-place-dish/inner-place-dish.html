@@ -1,0 +1,40 @@
+<!--
+  Generated template for the InnerPlaceDish page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header class="app-header">
+  <ion-navbar>
+    <button ion-button menuToggle class="app-menu-btn">
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title class="app-logo"><img src="assets/logo.svg"></ion-title>
+    <ion-buttons class="md" end>
+      <button ion-button icon-only>
+        <ion-icon name="more"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+	<div class="place-bg">
+		<div class="dish-img">
+			<img src="{{dishCurr.src}}" alt="{{dishCurr.label}}">
+		</div>
+		<div class="dish-desc">
+			<div class="dish-title">
+				{{dishCurr.label}}
+			</div>
+			<div class="dish-price">
+				{{dishCurr.price}} тг
+			</div>
+			<div class="dish-content">
+				{{dishCurr.excerpt}}
+			</div>
+		</div>
+		
+	</div>
+</ion-content>

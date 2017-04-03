@@ -85,7 +85,7 @@ export class DeliveryPlacePage {
   onScroll() {
   	let $segments = document.getElementById('segments');
   	let $segmentsStart = document.getElementById('segments-start');
-
+    console.log('dd');
 
   	let scrollTop = this.contentq.getContentDimensions().scrollTop;
   		
@@ -139,7 +139,6 @@ export class DeliveryPlacePage {
   	return typeof string == "string";
   }
   ionViewDidLoad() {
-  	console.log('delivery place');
     
   }
   isScrolling() {

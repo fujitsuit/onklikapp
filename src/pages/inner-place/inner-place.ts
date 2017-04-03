@@ -45,6 +45,7 @@ export class InnerPlacePage {
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
   constructor(private formBuilder: FormBuilder, public navCtrl: NavController, public navParams: NavParams, public api:AuthService) {
+  	
   	this.placeContent = "0";
   	this.favourite = false;
   	this.newTesti = this.formBuilder.group({
@@ -69,6 +70,7 @@ export class InnerPlacePage {
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
+  	
   	initializePlace(id) {
     	this.api.place(id).subscribe(r => {
       		this.place = r
@@ -156,7 +158,7 @@ export class InnerPlacePage {
 		return typeof string == "string";
 	}
 	ionViewDidLoad() {
-
+		this.contentq.enableScrollListener();
 	}
 	isScrolling() {
 		console.log('asdasd');
@@ -220,12 +222,19 @@ export class InnerPlacePage {
 	  		}
 	  	}
 	}
-	loadCatItems(id){
-		this.menuItems.menuCatId = id;
-		this.menuItems = {}
-		this.api.menu(id).subscribe(r => {
-		    this.menuItems = r; 
-		})
+	loadCatItems($event, id){
+		if(this.menuItems.menuCatId == id){
+			this.menuItems = [];
+		}else{
+			this.menuItems.menuCatId = id;
+			this.menuItems = [];
+			this.api.menu(id).subscribe(r => {
+			    this.menuItems = r; 
+			});
+			console.log($event);
+		}
+		
+		console.log('sd')
 		// for (var i = this.placeMenuCat.menuCats.length - 1; i >= 0; i--) {
 		// 	if(this.placeMenuCat.menuCats[i].menuCatId == id){
 		// 		if(this.placeMenuCat.menuCats[i].status == 'active'){

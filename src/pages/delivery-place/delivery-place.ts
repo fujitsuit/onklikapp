@@ -91,9 +91,6 @@ export class DeliveryPlacePage {
   		
 	let segmentsClasses = $segments.classList;
 
-	console.log($segmentsStart.offsetTop);
-	console.log(scrollTop);
-
 	if($segmentsStart.offsetTop < scrollTop){
 		segmentsClasses.add('sticky');
 	}else{

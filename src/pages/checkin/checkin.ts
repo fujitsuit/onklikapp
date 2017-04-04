@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { CheckinInnerPage } from '../checkin-inner/checkin-inner';
 import { AuthService } from '../../providers/auth-service';
 /*
   Generated class for the Checkin page.
@@ -16,8 +17,16 @@ export class CheckinPage {
   	constructor(public navCtrl: NavController, public navParams: NavParams, public api:AuthService) {
 	    this.api.booking().subscribe(r => {
 	    	console.log(r);
-	        this.places = r
+	      this.places = r
 	    })
+  	}
+
+
+  	goInner(id, type){
+  		this.navCtrl.push(CheckinInnerPage , {
+	      placeId: id,
+	      type: type
+	    });
   	}
 	  getStars(x: number, y:number){
 	    let stars = [];

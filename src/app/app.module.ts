@@ -33,6 +33,7 @@ import { DeliveryPlacePage } from '../pages/delivery-place/delivery-place';
 
 
 import { CheckinPage } from '../pages/checkin/checkin';
+import { CheckinInnerPage } from '../pages/checkin-inner/checkin-inner';
 import { TabsPage } from '../pages/tabs/tabs';
 
 
@@ -54,6 +55,7 @@ import { AuthService } from '../providers/auth-service';
     TourPage,
     TabsPage,
     CheckinPage,
+    CheckinInnerPage,
     DeliveryPage,
     DeliveryPlacePage,
     MyProfilePage,
@@ -94,6 +96,7 @@ import { AuthService } from '../providers/auth-service';
     TourPage,
     TabsPage,
     CheckinPage,
+    CheckinInnerPage,
     DeliveryPage,
     DeliveryPlacePage,
     MyProfilePage,

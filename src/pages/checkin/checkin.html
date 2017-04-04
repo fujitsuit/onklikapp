@@ -39,7 +39,7 @@
           </ion-col>
           <ion-col class="c-place-desc" width-5>
             <ion-buttons>
-              <button ion-button block class="c-place-btn hollow" >
+              <button (click)="goInner(place.id, place.id)" ion-button block class="c-place-btn hollow" >
                 <ion-icon name="checkmark-circle-outline"></ion-icon> 
                 Check in
               </button>

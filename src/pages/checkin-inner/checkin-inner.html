@@ -1,0 +1,134 @@
+<!--
+  Generated template for the CheckinInner page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header class="app-header">
+  <ion-navbar>
+    <button ion-button menuToggle="left" class="app-menu-btn">
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title class="app-logo"><img src="assets/logo.svg"></ion-title>
+    <ion-buttons end>
+      
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+	
+	<div class="checkin-wrapper">
+		<ion-item class="checkin-header">
+	  		<ion-thumbnail item-left >
+				<img src="{{place.src}}">
+			</ion-thumbnail>
+			<h2>
+				{{place.title}}
+			</h2>
+			<div class="card-rating c-place-rating">
+				<div class="c-place-rating-stars">
+					<div class="c-place-star" *ngFor="let item of getStars(5, place.star)">
+						<ion-icon *ngIf="item" name="star"></ion-icon>
+						<ion-icon *ngIf="!item" name="star-outline"></ion-icon>
+					</div>
+				</div>
+				<div class="card-rating-count">
+					({{place.count}})
+				</div>
+			</div>
+
+
+			<div class="checkin-camera">
+				<button icon-only ion-button (click)="getSelfie()">
+					<ion-icon name="camera"></ion-icon>
+				</button>
+			</div>
+		</ion-item>
+
+		<ion-segment class="segment" [(ngModel)]="placeContent" (ionChange)="onSegmentChanged($event)">
+			<ion-segment-button class="segment-item" value="0">
+				Посетители
+			</ion-segment-button>
+			<ion-segment-button class="segment-item" value="1">
+				Заказ на месте
+			</ion-segment-button>
+		</ion-segment>
+
+
+		<ion-slides #mySlider (ionSlideDidChange)="onSlideChanged($event)">
+			<!-- Посетители -->
+			<ion-slide>
+				<div *ngIf="profile.open == false">
+					<button ion-button class="btn-big" (click)="openProfile()">
+						<ion-icon name="eye"></ion-icon>
+						Открыть профиль
+					</button>
+					<div class="place-desc">
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+					</div>
+				</div>
+				<div *ngIf="profile.open == true">
+					<ion-list class="guest-list">
+						<ion-item class="guest-item" *ngFor="let guest of guests">
+							<ion-avatar class="guest-ava" item-left>
+								<img src="{{guest.img}}">
+							</ion-avatar>
+							<div class="guest-desc">
+								<div class="guest-info">
+									<h2>{{guest.name}}</h2>
+									<div class="guest-table">
+										Номер стола: <span>{{guest.table}}</span>
+									</div>
+									<div class="guest-zone">
+										"{{guest.zone}}"
+									</div>
+								</div>
+								<button class="guest-btn {{guest.status}}" *ngIf="guest.status == 'notFriend' " (click)="addFriend(guest.id)" ion-button icon-right>
+									Подружиться <ion-icon name="add"></ion-icon>
+								</button>
+								<button class="guest-btn {{guest.status}}" *ngIf="guest.status == 'pending' " ion-button icon-right>
+									В ожидании <ion-icon name="time"></ion-icon>
+								</button>
+								<button class="guest-btn {{guest.status}}" *ngIf="guest.status == 'refuse' " (click)="refuseFriend(guest.id)" ion-button icon-right>
+									Отклонить <ion-icon name="close"></ion-icon>
+								</button>
+								<button class="guest-btn {{guest.status}}" *ngIf="guest.status == 'friend' " ion-button icon-right>
+									В друзьях
+								</button>
+							</div>
+						</ion-item>
+					</ion-list>
+				</div>
+			</ion-slide>
+			<ion-slide>
+				<div *ngIf="profile.checked==false">
+					<div *ngIf="place.type=='qr' ">
+						<button ion-button class="btn-big" (click)="getQR()">
+							нажмите, чтобы считать QR-код
+						</button>
+						<div class="place-desc">
+							<p>
+								<img src="assets/content/qr.jpg" alt="">
+								Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+							</p>
+						</div>
+					</div>
+					<div *ngIf="place.type=='admin' ">
+						<div class="place-desc">
+							<div class="message-img">
+								<img src="assets/content/admin.png">
+							</div>
+							<div class="message-text">
+								<h2>Ожидайте подтверждение от Администратора заведения</h2>
+							</div>
+						</div>
+					</div>
+				</div>
+			</ion-slide>
+			<!-- Заказ на месте -->
+		</ion-slides>
+	</div>
+  	
+</ion-content>

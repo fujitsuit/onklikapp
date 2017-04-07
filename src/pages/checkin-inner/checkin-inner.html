@@ -105,7 +105,7 @@
 			<ion-slide>
 				<div *ngIf="profile.checked==false">
 					<div *ngIf="place.type=='qr' ">
-						<button ion-button class="btn-big" (click)="getQR()">
+						<button ion-button class="btn-big" (click)="getQR(place.id)">
 							нажмите, чтобы считать QR-код
 						</button>
 						<div class="place-desc">
@@ -125,6 +125,38 @@
 							</div>
 						</div>
 					</div>
+				</div>
+				<div *ngIf="profile.checked==true" class="place-desc">
+					<ion-list *ngFor="let category of placeMenuCat.menuCats" class="place-menu">
+						<ion-list-header class="place-menu-title">
+							<ion-item class="place-menu-header {{category.status}}" (click)="loadCatItems($event, category.menuCatId)">
+								
+							{{ category.menuCatTitle }}
+							</ion-item>
+						</ion-list-header>
+						<ion-list class="place-menu-list" *ngIf="menuItems.menuCatId == category.menuCatId">
+							
+							<ion-card class="place-menu-list-item" *ngFor="let item of menuItems.items" (click)="goCheckinDish(item.id)">
+								<div class="place-dish">
+									<div class="place-dish-img">
+										<img src="{{item.src}}" alt="{{item.label}}">
+									</div>
+									<div class="place-dish-cont">
+										<div class="place-dish-title">
+											{{item.label}}
+										</div>
+										<div class="place-dish-excerpt">
+											{{item.excerpt}}
+										</div>
+										<div class="place-dish-price">
+											<span *ngIf="item.count">{{item.count}} x - </span>
+											{{item.price}} тг
+										</div>
+									</div>
+								</div>
+							</ion-card>
+						</ion-list>
+					</ion-list>
 				</div>
 			</ion-slide>
 			<!-- Заказ на месте -->

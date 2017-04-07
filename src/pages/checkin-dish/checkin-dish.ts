@@ -4,6 +4,8 @@ import { NavController, NavParams } from 'ionic-angular';
 
 import { Storage } from '@ionic/storage';
 
+import { Cart } from '../../providers/checkin-cart';
+
 
 /*
   Generated class for the CheckinDish page.
@@ -20,8 +22,8 @@ export class CheckinDishPage {
   dish: any;
 	dishCurr: any;
 	dishType: any;
-  cart: any;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage) {
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public cart: Cart) {
   	this.initializeDish();
   	
   	this.dishCurr = {
@@ -42,19 +44,18 @@ export class CheckinDishPage {
       ]
     };
     this.dishType = {
+      name: this.dishCurr.label,
+      dishid: this.dishCurr.id,
+      src: this.dishCurr.src,
+      price: this.dishCurr.price,
       pref: '',
       addit: '',
       quant: 1,
+      additData: [],
       additPrice: 0,
       amountss: this.dishCurr.price
     };
 
-    storage.ready().then(() => {
-
-      storage.get('checkinCart').then((val) => {
-        this.cart = JSON.parse(val);
-      });
-     });
     
   }
   quantIncr(){
@@ -73,6 +74,15 @@ export class CheckinDishPage {
       for(let x = 0; x<= this.dishType.addit.length; x++){
         if( this.dishCurr.addits[i].id == this.dishType.addit[x] ){
           this.dishType.additPrice += this.dishCurr.addits[i].price;
+          let obj = {
+            price: this.dishCurr.addits[i].price,
+            id: this.dishCurr.addits[i].id,
+            title: this.dishCurr.addits[i].title
+          }
+          this.dishType.additData.push(obj);
+          //  this.dishType.additData[x].price = this.dishCurr.addits[i].price;
+          // this.dishType.additData[x].id = this.dishCurr.addits[i].id;
+          // this.dishType.additData[x].title = this.dishCurr.addits[i].title;
         }
       }
     }
@@ -81,10 +91,10 @@ export class CheckinDishPage {
   }
   addToCart(){
     this.cart.status = true;
-    this.storage.set('checkinCart', JSON.stringify(this.cart));
-    this.storage.get('checkinCart').then((val) => {
-      console.log(JSON.parse(val));
-    });
+    this.cart.items.push(this.dishType);
+    this.cart.count = this.cart.count+1;
+
+    this.navCtrl.pop();
   }
   getDishInfo(id, array){
   	for (var i = array.length - 1; i >= 0; i--) {
@@ -92,6 +102,7 @@ export class CheckinDishPage {
   			this.dishCurr = array[i];
   		}
   	}
+
   }
   initializeDish(){
   	this.dish = [

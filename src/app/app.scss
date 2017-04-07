@@ -70,7 +70,13 @@
 	border-color: #22b54e !important;
 	
 }
-
+#cart-btn{
+	button{
+		background-color: #52c939;
+		color:#fff;
+	}
+	
+}
 .item{
 	&-select{
 		.label-md, .label-ios, .label-wp{

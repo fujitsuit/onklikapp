@@ -5,6 +5,8 @@ import { BrowserModule, DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/
 
 import { MyApp } from './app.component';
 
+import { IonicStorageModule } from '@ionic/storage';
+
 import { MyProfilePage } from '../pages/my-profile/my-profile';
 import { CheckInStoryPage } from '../pages/check-in-story/check-in-story';
 import { BookStoryPage } from '../pages/book-story/book-story';
@@ -34,6 +36,8 @@ import { DeliveryPlacePage } from '../pages/delivery-place/delivery-place';
 
 import { CheckinPage } from '../pages/checkin/checkin';
 import { CheckinInnerPage } from '../pages/checkin-inner/checkin-inner';
+import { CheckinTablePage } from '../pages/checkin-table/checkin-table';
+import { CheckinDishPage } from '../pages/checkin-dish/checkin-dish';
 import { TabsPage } from '../pages/tabs/tabs';
 
 
@@ -56,6 +60,8 @@ import { AuthService } from '../providers/auth-service';
     TabsPage,
     CheckinPage,
     CheckinInnerPage,
+    CheckinDishPage,
+    CheckinTablePage,
     DeliveryPage,
     DeliveryPlacePage,
     MyProfilePage,
@@ -80,7 +86,8 @@ import { AuthService } from '../providers/auth-service';
           backButtonText: 'Назад',
         }
       }
-    }, {})
+    }, {}),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -97,6 +104,8 @@ import { AuthService } from '../providers/auth-service';
     TabsPage,
     CheckinPage,
     CheckinInnerPage,
+    CheckinDishPage,
+    CheckinTablePage,
     DeliveryPage,
     DeliveryPlacePage,
     MyProfilePage,

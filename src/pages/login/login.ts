@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MenuController, NavController, NavParams,  AlertController, LoadingController, Loading } from 'ionic-angular';
 import { HomePage } from '../home/home';
+import { CheckinInnerPage } from '../checkin-inner/checkin-inner';
 import { AuthService } from '../../providers/auth-service';
 
 @Component({
@@ -25,6 +26,7 @@ export class LoginPage {
 
   public login() {
     this.showLoading()
+    // this.nav.setRoot(CheckinInnerPage);
     this.auth.login(this.registerCredentials).subscribe(allowed => {
       if (!allowed) {
         setTimeout(() => {
@@ -38,6 +40,7 @@ export class LoginPage {
     error => {
       this.showError(error);
     });
+
   }
   
   showLoading() {

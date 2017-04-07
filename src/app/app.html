@@ -35,4 +35,9 @@
 </ion-menu>
 
 <!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
-<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false">
+  
+</ion-nav>
+<!--<ion-fab *ngIf="cartStatus.status == true">
+  <button ion-fab>Button</button>
+</ion-fab>-->

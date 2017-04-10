@@ -45,15 +45,22 @@ export class CheckinCartPage {
     this.initFinal();
   }
   remove(id){
-    if(this.items.length == 0){
-      for(let i=0; this.items.length-1 >= i; i++){
+    if(this.items.length){
+      for(let i=0; this.items.length-1 >= i; i++){ 
         if(this.items[i].id == id){
           this.items.splice(i, 1);
         }
       }
-      console.log(this.items.length);
+      
       this.initFinal();
       this.cart.count = this.cart.count - 1;
+
+      if(this.items.length == 0){
+        console.log(this.items.length);
+        console.log(this.cart.status);
+        this.cart.status = false;
+        this.navCtrl.pop(); 
+      }
     }else{
       console.log('asdasd');
       this.cart.status = false;
@@ -66,7 +73,6 @@ export class CheckinCartPage {
     for(let i=0; this.items.length-1 >= i; i++){
       this.final += this.items[i].amountss;
     }
-    console.log(this.final);
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad CheckinCartPage');

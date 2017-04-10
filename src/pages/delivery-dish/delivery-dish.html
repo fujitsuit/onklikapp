@@ -1,0 +1,86 @@
+<!--
+  Generated template for the DeliveryDish page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header class="app-header">
+  <ion-navbar>
+    <button ion-button menuToggle class="app-menu-btn">
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title class="app-logo"><img src="assets/logo.svg"></ion-title>
+    <ion-buttons class="md" end>
+      <button ion-button icon-only>
+        <ion-icon name="more"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+	<div class="place-bg">
+		<div class="dish-img">
+			<img src="{{dishCurr.src}}" alt="{{dishCurr.label}}">
+		</div>
+		<div class="dish-desc">
+      <ion-list>
+        <ion-list-header>
+          {{dishCurr.label}}
+        </ion-list-header>
+        <div class="dish-text">
+          {{dishCurr.excerpt}}
+        </div>
+        <ion-item>
+          <ion-label class="grey" item-left>
+            Обычная цена:
+          </ion-label>
+          <span item-right>
+            {{dishCurr.price}} тг
+          </span>
+        </ion-item>
+        
+        <ion-item>
+          <ion-label stacked>
+            Предпочтения
+          </ion-label>
+          <ion-select placeholder="Выбрать" cancelText="" multiple="true" okText="Выбрать" [(ngModel)]="dishType.pref">
+            <ion-option *ngFor="let item of dishCurr.prefs" value="{{item.id}}">{{item.title}}</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked>
+            Дополнения
+          </ion-label>
+          <ion-select placeholder="Выбрать" cancelText="" multiple="true" okText="Выбрать" [(ngModel)]="dishType.addit" (ionChange)="refresh()">
+            <ion-option *ngFor="let item of dishCurr.addits" value="{{item.id}}">
+              {{item.title}} 
+              <span>
+                {{item.price}} тг
+              </span>
+            </ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label item-left>Количество:</ion-label>
+          <ion-buttons item-right class="dish-quant">
+            <button ion-button (click)="quantIncr()" icon-only >
+              <ion-icon name="add"></ion-icon>
+            </button>
+            <button>{{dishType.quant}}</button>
+            <button icon-only ion-button (click)="quantDicr()">
+              <ion-icon name="remove"></ion-icon>
+            </button>
+          </ion-buttons>
+        </ion-item>
+        <ion-item class="dish-footer">
+          <ion-label item-left>Общая сумма:</ion-label>
+          <div class="dish-amount" item-right>{{dishType.amountss}} тг</div>
+        </ion-item>
+      </ion-list>
+      <button class="dish-submit" ion-button full icon-right (click)="addToCart()">Добавить в корзину <ion-icon name="add"></ion-icon> </button>
+		</div>
+		
+	</div>
+</ion-content>

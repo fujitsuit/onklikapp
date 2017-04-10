@@ -2,21 +2,21 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
 /*
-  Generated class for the MyCart page.
+  Generated class for the MyStory page.
 
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
 @Component({
-  selector: 'page-my-cart',
-  templateUrl: 'my-cart.html'
+  selector: 'page-my-story',
+  templateUrl: 'my-story.html'
 })
-export class MyCartPage {
+export class MyStoryPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {}
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad MyCartPage');
+    console.log('ionViewDidLoad MyStoryPage');
   }
 
 }

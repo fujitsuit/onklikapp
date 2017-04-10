@@ -7,20 +7,18 @@ import { MyApp } from './app.component';
 
 import { IonicStorageModule } from '@ionic/storage';
 
+// User Pages
 import { MyProfilePage } from '../pages/my-profile/my-profile';
-import { CheckInStoryPage } from '../pages/check-in-story/check-in-story';
-import { BookStoryPage } from '../pages/book-story/book-story';
 import { MyOptionsPage } from '../pages/my-options/my-options';
 import { MyFavouritePage } from '../pages/my-favourite/my-favourite';
-import { OrderStoryPage } from '../pages/order-story/order-story';
-import { OrderPlaceStoryPage } from '../pages/order-place-story/order-place-story';
-import { MyCartPage } from '../pages/my-cart/my-cart';
-import { TourPage } from '../pages/tour/tour';
+import { MyStoryPage } from '../pages/my-story/my-story';
 
+// Auth pages
 import { ForgotPage } from '../pages/forgot/forgot';
 import { SignupPage } from '../pages/signup/signup';
 import { LoginPage } from '../pages/login/login';
 
+// Places
 import { HomePage } from '../pages/home/home';
 import { InnerPlacePage } from '../pages/inner-place/inner-place';
 import { InnerPlaceDishPage } from '../pages/inner-place-dish/inner-place-dish';
@@ -28,25 +26,34 @@ import { InnerPlaceGalleryPage } from '../pages/inner-place-gallery/inner-place-
 import { InnerPlaceSharePage } from '../pages/inner-place-share/inner-place-share';
 import { PlaceBookPage } from '../pages/place-book/place-book';
 import { PlaceBookSubmitPage } from '../pages/place-book-submit/place-book-submit';
+import { TourPage } from '../pages/tour/tour';
 
-
+// Delivery
 import { DeliveryPage } from '../pages/delivery/delivery';
 import { DeliveryPlacePage } from '../pages/delivery-place/delivery-place';
+import { DeliveryDishPage } from '../pages/delivery-dish/delivery-dish';
+import { DeliveryCartPage } from '../pages/delivery-cart/delivery-cart';
+import { DeliverySubmitPage } from '../pages/delivery-submit/delivery-submit';
 
-
+//Checkin
 import { CheckinPage } from '../pages/checkin/checkin';
 import { CheckinInnerPage } from '../pages/checkin-inner/checkin-inner';
 import { CheckinTablePage } from '../pages/checkin-table/checkin-table';
 import { CheckinCartPage } from '../pages/checkin-cart/checkin-cart';
 import { CheckinDishPage } from '../pages/checkin-dish/checkin-dish';
-import { TabsPage } from '../pages/tabs/tabs';
 
-
+//Plugins
 import { GalleryModal } from 'ionic-gallery-modal';
 import { ZoomableImage } from 'ionic-gallery-modal';
 import { ModalGalleryPage } from '../pages/modal-gallery/modal-gallery';
+
+//Providers
 import { AuthService } from '../providers/auth-service';
 import { Cart } from '../providers/checkin-cart';
+import { DeliveryCart } from '../providers/delivery-cart';
+
+
+
 @NgModule({
   declarations: [
     MyApp,
@@ -59,7 +66,6 @@ import { Cart } from '../providers/checkin-cart';
     PlaceBookPage,
     PlaceBookSubmitPage,
     TourPage,
-    TabsPage,
     CheckinPage,
     CheckinInnerPage,
     CheckinDishPage,
@@ -67,16 +73,15 @@ import { Cart } from '../providers/checkin-cart';
     CheckinTablePage,
     DeliveryPage,
     DeliveryPlacePage,
+    DeliveryDishPage,
+    DeliveryCartPage,
+    DeliverySubmitPage,
     MyProfilePage,
-    CheckInStoryPage,
-    BookStoryPage,
     MyOptionsPage,
     MyFavouritePage,
-    OrderStoryPage,
-    OrderPlaceStoryPage,
+    MyStoryPage,
     SignupPage,
     ForgotPage,
-    MyCartPage,
     LoginPage,
     GalleryModal,
     ZoomableImage
@@ -104,7 +109,6 @@ import { Cart } from '../providers/checkin-cart';
     PlaceBookPage,
     PlaceBookSubmitPage,
     TourPage,
-    TabsPage,
     CheckinPage,
     CheckinInnerPage,
     CheckinCartPage,
@@ -112,16 +116,15 @@ import { Cart } from '../providers/checkin-cart';
     CheckinTablePage,
     DeliveryPage,
     DeliveryPlacePage,
+    DeliveryDishPage,
+    DeliveryCartPage,
+    DeliverySubmitPage,
     MyProfilePage,
-    CheckInStoryPage,
-    BookStoryPage,
     MyOptionsPage,
     MyFavouritePage,
-    OrderStoryPage,
-    OrderPlaceStoryPage,
+    MyStoryPage,
     SignupPage,
     ForgotPage,
-    MyCartPage,
     LoginPage,
     GalleryModal,
     ZoomableImage
@@ -133,7 +136,8 @@ import { Cart } from '../providers/checkin-cart';
     providers: [
         { provide: LOCALE_ID, useValue: "ru-RU" },
         AuthService,
-        Cart
+        Cart,
+        DeliveryCart
     ]
 })
 export class AppModule {}

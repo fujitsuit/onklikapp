@@ -2,13 +2,12 @@ import { Component, Input, ViewChild } from '@angular/core';
 import { NavController, NavParams, Slides, Content } from 'ionic-angular';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
-import { InnerPlaceDishPage } from '../inner-place-dish/inner-place-dish';
-import { InnerPlaceGalleryPage } from '../inner-place-gallery/inner-place-gallery';
+import { DeliveryDishPage } from '../delivery-dish/delivery-dish';
+import { DeliveryCartPage } from '../delivery-cart/delivery-cart';
 import { InnerPlaceSharePage } from '../inner-place-share/inner-place-share';
-import { PlaceBookPage } from '../place-book/place-book';
-import { PlaceBookSubmitPage } from '../place-book-submit/place-book-submit';
-import { TourPage } from '../tour/tour';
+
 import { AuthService } from '../../providers/auth-service';
+import { DeliveryCart } from '../../providers/delivery-cart';
 /*
   Generated class for the InnerPlace page.
 
@@ -38,13 +37,16 @@ export class DeliveryPlacePage {
 	menuItems: any;
 	placeCatMenuItems: any;
 	testi: any;
+
+	cartCur: any;
+
 	shares: any;
 	favourite: any;
 	deliveryplace = {};
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-  constructor(private formBuilder: FormBuilder, public navCtrl: NavController, public navParams: NavParams, public api:AuthService) {
+  constructor(private formBuilder: FormBuilder, public navCtrl: NavController, public navParams: NavParams, public api:AuthService, public cart: DeliveryCart) {
   	this.placeContent = "0";
   	this.favourite = false;
   	this.newTesti = this.formBuilder.group({
@@ -66,6 +68,9 @@ export class DeliveryPlacePage {
   	this.menuItems = {menuId: null, items: [{label:'', id: null}]};
 
   	this.getPlaceMenuCat( 1 , this.placeMenu)
+
+
+		this.InitCartCur();
   }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -99,7 +104,14 @@ export class DeliveryPlacePage {
 
   }
 
-
+	InitCartCur(){
+    for(let i=0; this.cart.placeCart.length -1 >= i; i++){
+      if(this.cart.placeCart[i].placeId == this.navParams.get('placeId') ){
+        this.cartCur = this.cart.placeCart[i];
+      }
+    }
+		console.log(this.cart.status)
+  }
 
 
   onSegmentChanged(segmentButton) {
@@ -139,7 +151,7 @@ export class DeliveryPlacePage {
   	return typeof string == "string";
   }
   ionViewDidLoad() {
-    
+    this.contentq.enableScrollListener();
   }
   isScrolling() {
   	console.log('asdasd');
@@ -173,24 +185,11 @@ export class DeliveryPlacePage {
 			{id:4, author: 'Author', avatar: 'assets/avatar.jpg', text: 'Комментарий для заведения',date:'Tue Mar 14 2017 13:26:32 GMT+0600 (Центральная Азия (зима))',reply:'',admin:false}
 		]
 	}
-	goInnerPlaceBook(id){
-		this.navCtrl.push(PlaceBookPage, {
-	      id: id
-	    });
-	}
-	goInnerPlaceTour(id){
-		this.navCtrl.push(TourPage, {
-	      id: id
-	    });
-	}
-	goInnerPlaceGallery(id){
-	    this.navCtrl.push(InnerPlaceGalleryPage, {
-	      id: id
-	    });
-	  }
+
 	  goInnerPlaceDish(id){
-	    this.navCtrl.push(InnerPlaceDishPage, {
-	      dishId: id
+	    this.navCtrl.push(DeliveryDishPage, {
+	      dishId: id,
+				placeId: this.navParams.get('placeId'),
 	    });
 	  }
 	  goInnerPlaceShare(id){
@@ -198,6 +197,11 @@ export class DeliveryPlacePage {
 	      shareId: id
 	    });
 	  }
+		goCart(){
+			this.navCtrl.push(DeliveryCartPage, {
+				placeId: this.navParams.get('placeId')
+			});
+		}
 	getPlaceMenuCat(id, array){
 		for (var i = array.length - 1; i >= 0; i--) {
 	  		if(array[i].placeId == id){

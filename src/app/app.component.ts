@@ -3,9 +3,9 @@ import { Nav, Platform , MenuController } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 
 import { MyProfilePage } from '../pages/my-profile/my-profile';
-import { CheckInStoryPage } from '../pages/check-in-story/check-in-story';
 import { MyOptionsPage } from '../pages/my-options/my-options';
 import { MyFavouritePage } from '../pages/my-favourite/my-favourite';
+import { MyStoryPage } from '../pages/my-story/my-story';
 import { HomePage } from '../pages/home/home';
 import { CheckinPage } from '../pages/checkin/checkin';
 import { CheckinCartPage } from '../pages/checkin-cart/checkin-cart';
@@ -35,7 +35,7 @@ export class MyApp {
       { title: 'Check In', component: CheckinPage, icon: "checkin"},
       { title: 'Доставка', component: DeliveryPage, icon: "checkin"},
       { title: 'Избранное', component: MyFavouritePage, icon: "checkin"},
-      { title: 'История', component: CheckInStoryPage, icon: "checkin"}
+      { title: 'История', component: MyStoryPage, icon: "checkin"}
     ];
     this.pages = [
       { title: 'Мой профиль', component: MyProfilePage, icon: "profile" },

@@ -10,11 +10,11 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title class="app-logo"><img src="assets/logo.svg"></ion-title>
-<!--     <ion-buttons class="md" end>
-      <button ion-button icon-only>
-        <ion-icon name="more"></ion-icon>
+     <ion-buttons end>
+      <button *ngIf="cart.status == true" ion-button icon-only (click)="goCart()">
+        <ion-icon name="cart"></ion-icon>
       </button>
-    </ion-buttons> -->
+    </ion-buttons> 
   </ion-navbar>
 </ion-header>
 <ion-content #content (ionScroll)="onScroll()"> 

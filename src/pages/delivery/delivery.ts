@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, MenuController } from 'ionic-angular';
 import { DeliveryPlacePage } from '../delivery-place/delivery-place';
+
 import { AuthService } from '../../providers/auth-service';
+import { DeliveryCart } from '../../providers/delivery-cart';
 
 /*
   Generated class for the Delivery page.
@@ -20,7 +22,7 @@ export class DeliveryPage {
 	filter: any;
 	filters = {};
   count:number;
-	constructor(public menuCtrl: MenuController, public navCtrl: NavController, public navParams: NavParams, public api:AuthService) {
+	constructor(public menuCtrl: MenuController, public navCtrl: NavController, public navParams: NavParams, public api:AuthService, public cart: DeliveryCart) {
     
     this.api.delivery().subscribe(r => {
         this.places = r;

@@ -1,0 +1,97 @@
+page-delivery-cart {
+  .content, .content-ios,.content-md,.content-md{
+    background-image: url(../assets/bg/bg-home.jpg);
+    background-size: cover;
+    min-height: 100%;
+    .cart{
+      background: rgba(255, 255, 255, .8);
+      border-radius: 7px;
+      box-shadow: 0 0 20px -7px #000;
+      margin: -5px;
+      padding: 5px;
+      &-header{
+        border-top: none;
+        border-bottom: 1px solid #47c53e;
+        background-color: transparent;
+        font-size: 2.5rem;
+        text-align: center;
+      }
+      &-item{
+        position: relative;
+        border-bottom: 1px solid #8a8a8a;
+        &-remove{
+          position: absolute;
+          top: 0;
+          right: 0;
+          height: 30px;
+          width: 30px;
+          z-index: 10;
+        }
+        &-name{
+          font-size: 2rem;
+          padding-right:20px;
+        }
+        &-price{
+          color:#8a8a8a;
+          span{
+            color:#47c53e;
+            font-size: 2rem;
+          }
+        }
+        &-quant{
+          
+        }
+        &-amount{
+          color:#8a8a8a;
+          span{
+            color:#47c53e;
+            font-size: 2rem;
+          }
+        }
+        &-digit{
+          background-color: transparent;
+          font-size: 2rem;
+          vertical-align: top;
+          height: 20px;
+        }
+        &-op{
+          margin: 0;
+          width: 20px;
+          height: 20px;
+          font-size: 1.2rem;
+          background-color: transparent;
+          box-shadow: none;
+          &-plus{
+            color:#47c53e
+          }
+          &-minus{
+            color:#d04d4d;
+          }
+        }
+      }
+
+      &-final{
+        display: flex;
+        align-items:center;
+        margin-top: 20px;
+        padding: 0 20px;
+        ion-label{
+          font-size: 2rem;
+        }
+        span{
+          font-size: 2.5rem;
+          color:#47c53e;
+          font-weight: bold;
+        }
+      }
+    }
+    .dish-submit{
+      box-shadow: none;
+      background-color:#47c53e;
+      font-size: 1.5rem;
+      color:#fff;
+      
+    }
+
+  }
+}

@@ -37,6 +37,7 @@ import { DeliveryPlacePage } from '../pages/delivery-place/delivery-place';
 import { CheckinPage } from '../pages/checkin/checkin';
 import { CheckinInnerPage } from '../pages/checkin-inner/checkin-inner';
 import { CheckinTablePage } from '../pages/checkin-table/checkin-table';
+import { CheckinCartPage } from '../pages/checkin-cart/checkin-cart';
 import { CheckinDishPage } from '../pages/checkin-dish/checkin-dish';
 import { TabsPage } from '../pages/tabs/tabs';
 
@@ -45,6 +46,7 @@ import { GalleryModal } from 'ionic-gallery-modal';
 import { ZoomableImage } from 'ionic-gallery-modal';
 import { ModalGalleryPage } from '../pages/modal-gallery/modal-gallery';
 import { AuthService } from '../providers/auth-service';
+import { Cart } from '../providers/checkin-cart';
 @NgModule({
   declarations: [
     MyApp,
@@ -61,6 +63,7 @@ import { AuthService } from '../providers/auth-service';
     CheckinPage,
     CheckinInnerPage,
     CheckinDishPage,
+    CheckinCartPage,
     CheckinTablePage,
     DeliveryPage,
     DeliveryPlacePage,
@@ -104,6 +107,7 @@ import { AuthService } from '../providers/auth-service';
     TabsPage,
     CheckinPage,
     CheckinInnerPage,
+    CheckinCartPage,
     CheckinDishPage,
     CheckinTablePage,
     DeliveryPage,
@@ -128,7 +132,8 @@ import { AuthService } from '../providers/auth-service';
 // }]
     providers: [
         { provide: LOCALE_ID, useValue: "ru-RU" },
-        AuthService
+        AuthService,
+        Cart
     ]
 })
 export class AppModule {}

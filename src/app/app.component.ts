@@ -8,9 +8,11 @@ import { MyOptionsPage } from '../pages/my-options/my-options';
 import { MyFavouritePage } from '../pages/my-favourite/my-favourite';
 import { HomePage } from '../pages/home/home';
 import { CheckinPage } from '../pages/checkin/checkin';
-import { CheckinDishPage } from '../pages/checkin-dish/checkin-dish';
+import { CheckinCartPage } from '../pages/checkin-cart/checkin-cart';
 import { DeliveryPage } from '../pages/delivery/delivery';
 import { LoginPage } from '../pages/login/login';
+
+import { Cart } from '../providers/checkin-cart';
 
 import { Storage } from '@ionic/storage';
 
@@ -20,14 +22,13 @@ import { Storage } from '@ionic/storage';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = CheckinDishPage;
+  rootPage: any = LoginPage;
 
   sections: Array<{title: string, component: any, icon: string}>;
   pages: Array<{title: string, component: any, icon: string}>;
-  cartStatus: any;
 
 
-  constructor(public platform: Platform,public menuCtrl: MenuController, storage: Storage) {
+  constructor(public platform: Platform,public menuCtrl: MenuController, storage: Storage, public cart:Cart) {
     this.initializeApp();
     this.sections = [      
       { title: 'Заведения', component: HomePage, icon: "checkin"},
@@ -40,18 +41,11 @@ export class MyApp {
       { title: 'Мой профиль', component: MyProfilePage, icon: "profile" },
       { title: 'Настройки', component: MyOptionsPage, icon: "wrench" }
     ]
-
-
-     storage.ready().then(() => {
-
-        this.cartStatus = storage.get('checkinCart').then((val) => {
-          return 1
-        });
-
-         console.log(this.cartStatus.toString());
-
-      });
 }
+
+  goCheckCart(){
+    this.nav.push(CheckinCartPage);
+  }
   initializeApp() {
     this.platform.ready().then(() => {
       StatusBar.styleDefault();

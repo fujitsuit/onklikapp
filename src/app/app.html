@@ -14,20 +14,20 @@
 
   <ion-content>
     
-    <ion-list class="menu-list">
-      <button class="menu-list-item" menuClose ion-item *ngFor="let p of sections" (click)="openPage(p)">
-        <div class="menu-list-item-icon {{p.icon}} "></div>
+    <ion-list class="menu-list menu-list-hl">
+      <button class="menu-list-item " menuClose ion-item *ngFor="let p of sections" [class.active]="checkActive(p)" (click)="openPage(p)">
+        <ion-icon name="{{p.icon}}"></ion-icon>
         {{p.title}}
       </button>
     </ion-list>
-    <ion-list class="menu-list">
-      <button class="menu-list-item" menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-        <div class="menu-list-item-icon {{p.icon}} "></div>
+    <ion-list class="menu-list menu-list-hl">
+      <button class="menu-list-item" menuClose ion-item *ngFor="let p of pages" [class.active]="checkActive(p)" (click)="openPage(p)">
+        <ion-icon name="{{p.icon}}"></ion-icon>
         {{p.title}}
       </button>
     </ion-list>
-    <ion-item class="menu-logout" href="#" (click)="logoutApp()">
-      <div class="menu-list-item-icon logout"></div>
+    <ion-item class="menu-logout menu-list-item" href="#" (click)="logoutApp()">
+      <ion-icon name="exit"></ion-icon>
       Выход
     </ion-item>
   </ion-content>
@@ -39,5 +39,5 @@
   
 </ion-nav>
 <ion-fab id="cart-btn" *ngIf="cart.status == true" bottom right>
-  <button ion-fab (click)="goCheckCart()">{{cart.count}}</button> 
+  <button ion-fab (click)="goCheckCart()"> <ion-icon name="paper"></ion-icon> {{cart.count}}</button> 
 </ion-fab>

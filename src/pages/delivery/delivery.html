@@ -1,7 +1,7 @@
 <ion-menu [content]="deliveryPlaces" id="deliveryFilter"  class="filter-menu" side="right" (ionClose)="closeMenu()">
 	<ion-content>
 		<div class="filter-bg">
-			<ion-list>
+			<ion-list *ngIf="isEmptyObject(delivery.filters)">
 				<ion-title class="filter-title"> Фильтрация </ion-title>
 				
 				<ion-item>
@@ -9,7 +9,7 @@
 						Город
 					</ion-label>
 					<ion-select placeholder="Выбрать" cancelText="" okText="Выбрать" [(ngModel)]="filter.placeCity">
-						<ion-option *ngFor="let item of filters.placeCity" value="{{item.id}}">{{item.title}}</ion-option>
+						<ion-option *ngFor="let item of delivery.filters.placeCity" value="{{item.id}}">{{item.title}}</ion-option>
 					</ion-select>
 				</ion-item>
 				<ion-item>
@@ -17,13 +17,13 @@
 					Сортировать по
 				</ion-label>
 				<ion-select placeholder="Выбрать" cancelText="" okText="Выбрать" [(ngModel)]="filter.placeSort">
-					<ion-option *ngFor="let item of filters.placeSort" value="{{item.id}}">{{item.title}}</ion-option>
+					<ion-option *ngFor="let item of delivery.filters.placeSort" value="{{item.id}}">{{item.title}}</ion-option>
 				</ion-select>
 				</ion-item>
 				<ion-item>
 					<ion-label stacked>Кухни / Блюда</ion-label>
 					<ion-select placeholder="Выбрать" cancelText="" okText="Выбрать" multiple="true" [(ngModel)]="filter.placeKitchen">
-						<ion-option *ngFor="let item of filters.placeKitchen" value="{{item.id}}">
+						<ion-option *ngFor="let item of delivery.filters.placeKitchen" value="{{item.id}}">
 							{{item.title}}
 						</ion-option>
 					</ion-select>
@@ -78,7 +78,11 @@
 	</ion-searchbar>
 
 	<ion-list class="delivery-places">
-		<ion-item *ngFor="let place of places" (click)="goInner(place.id)" class="delivery-place">
+		<ion-item *ngFor="let place of delivery.places" (click)="goInner(place.id)" class="delivery-place">
+			<div *ngIf="place.hasCart" class="delivery-cart">
+				{{place.cartCount}}
+				<ion-icon name="cart"></ion-icon>
+			</div>
 			<ion-thumbnail item-left >
 				<img src="{{place.src}}" alt="{{place.title}}">
 			</ion-thumbnail>

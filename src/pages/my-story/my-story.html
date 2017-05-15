@@ -4,15 +4,184 @@
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-header>
-
-  <ion-navbar>
-    <ion-title>myStory</ion-title>
+<ion-header class="app-header">
+  <ion-navbar> 
+    <button ion-button menuToggle="left" class="app-menu-btn">
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title class="app-logo">История</ion-title>
+    <ion-buttons end>
+      <button class="app-menu-btn empty">
+      </button>
+    </ion-buttons> 
   </ion-navbar>
-
 </ion-header>
 
 
-<ion-content padding>
-
+<ion-content #content (ionScroll)="onScroll()">
+  <div id="segments-start" class="place-tab-list-wrapper">
+    <ion-segment id="segments" [(ngModel)]="historyContent" class="place-tab-list" (ionChange)="onSegmentChanged($event)">
+      <ion-segment-button class="place-tab-item" value="0">
+        Бронирование
+      </ion-segment-button>
+      <ion-segment-button class="place-tab-item"  value="1">
+        Check-in
+      </ion-segment-button>
+      <ion-segment-button class="place-tab-item"  value="2">
+        Доставка
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+  <div class="slider-wrapper">
+    <ion-slides #historySlider (ionSlideDidChange)="onSlideChanged($event)">
+      <ion-slide >
+        <ion-list class="place-list">
+          <ion-item *ngFor="let item of history.places" class="place-list-item">
+            <button ion-button class="place-remove" (click)="removePlace(item.id)">
+              <ion-icon name="close"></ion-icon>
+            </button>
+            <ion-grid>
+              <ion-row>
+                <div class="place-name place-row"><span class="place-label">{{item.name}}</span></div>
+              </ion-row>
+              <ion-row>
+                <ion-col col-7>
+                  <div class="place-zone place-row"><span class="place-row-key">Зал: </span>{{item.zone}}</div>
+                  <div class="place-table place-row"><span class="place-row-key">Стол: </span>{{item.table}}</div>
+                </ion-col>
+                <ion-col col-5>
+                  <div class="place-row place-date"><span class="place-row-key">День: </span>{{item.date | date: 'dd.MM'}}</div>
+                  <div class="place-row place-time"><span class="place-row-key">Время: </span>{{item.date | date: 'HH:mm' }}</div>
+                </ion-col>
+              </ion-row>
+              <ion-row class="place-goto-wrapper"> 
+                <button ion-button (click)="goInnerPlace(placeId)" class="place-goto">Перейти к заведению</button>
+              </ion-row>
+            </ion-grid>
+          </ion-item>
+        </ion-list>
+      </ion-slide>
+      <ion-slide >
+        <ion-list class="place-list">
+          <ion-item *ngFor="let item of history.checkin" class="place-list-item">
+            <button ion-button class="place-remove" (click)="removeCheckin(item.id)">
+              <ion-icon name="close"></ion-icon>
+            </button>
+            <ion-grid>
+              <ion-row>
+                <div class="place-name place-row"><span class="place-label">{{item.name}}</span></div>
+              </ion-row>
+              <ion-row>
+                <ion-col col-7>
+                  <div class="place-zone place-row"><span class="place-row-key">Зал: </span>{{item.zone}}</div>
+                  <div class="place-table place-row"><span class="place-row-key">Стол: </span>{{item.table}}</div>
+                </ion-col>
+                <ion-col col-5>
+                  <div class="place-row place-date"><span class="place-row-key">День: </span>{{item.date | date: 'dd.MM'}}</div>
+                  <div class="place-row place-time"><span class="place-row-key">Время: </span>{{item.date | date: 'HH:mm' }}</div>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-6>
+                  <div class="place-row place-row-right">
+                    <div class="place-key">Начало - </div>
+                    <div class="place-value">{{item.start | date: "HH:mm"}} - </div>
+                  </div>
+                </ion-col>
+                <ion-col col-6>
+                  <div class="place-row place-row-left">
+                    <div class="place-value">{{item.end | date: "HH:mm"}}</div>
+                    <div class="place-key"> - Конец</div>
+                  </div>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <div *ngIf="item.opened" class="place-menu">
+                  <div *ngFor="let item of item.menu" class="place-menu-item">
+                    <div class="place-menu-item-key">
+                      {{item.name}}
+                    </div>
+                    <div class="place-menu-item-value">
+                      {{item.value}} тг
+                    </div>
+                  </div>
+                </div>
+                <div class="place-summ">
+                  <div class="place-summ-key">
+                    Общий счет:
+                  </div>
+                  <div class="place-summ-value">
+                    {{item.amount}} тг
+                  </div>
+                  <button ion-button *ngIf="item.opened" icon-only (click)="closeCheckin(item.id)">
+                    <ion-icon  name="remove"></ion-icon>
+                  </button>
+                  <button ion-button *ngIf="!item.opened" icon-only (click)="openCheckin(item.id)">
+                    <ion-icon  name="add"></ion-icon>
+                  </button>
+                </div>
+              </ion-row>
+              <ion-row class="place-goto-wrapper">
+                <button ion-button (click)="goInnerPlace(placeId)" class="place-goto">Перейти к заведению</button>
+              </ion-row>
+            </ion-grid>
+          </ion-item>
+        </ion-list>
+      </ion-slide>
+      <ion-slide >
+        <ion-list class="place-list">
+          <ion-item *ngFor="let item of history.delivery" class="place-list-item">
+            <button ion-button class="place-remove" (click)="removeDelivery(item.id)">
+              <ion-icon name="close"></ion-icon>
+            </button>
+            <ion-grid>
+              <ion-row>
+                <div class="place-name place-row"><span class="place-label">{{item.name}}</span></div>
+              </ion-row>
+              <ion-row>
+                <ion-col col-7>
+                  <div class="place-zone place-row"><span class="place-row-key">Зал: </span>{{item.zone}}</div>
+                  <div class="place-table place-row"><span class="place-row-key">Стол: </span>{{item.table}}</div>
+                </ion-col>
+                <ion-col col-5>
+                  <div class="place-row place-date"><span class="place-row-key">День: </span>{{item.date | date: 'dd.MM'}}</div>
+                  <div class="place-row place-time"><span class="place-row-key">Время: </span>{{item.date | date: 'HH:mm' }}</div>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <div *ngIf="item.opened" class="place-menu">
+                  <div *ngFor="let item of item.menu" class="place-menu-item">
+                    <div class="place-menu-item-key">
+                      {{item.name}}
+                    </div>
+                    <div class="place-menu-item-value">
+                      {{item.value}} тг
+                    </div>
+                  </div>
+                </div>
+                <div class="place-summ">
+                  <div class="place-summ-key">
+                    Общий счет:
+                  </div>
+                  <div class="place-summ-value">
+                    {{item.amount}} тг
+                  </div> 
+                  <button ion-button *ngIf="item.opened" icon-only (click)="closeDelivery(item.id)">
+                    <ion-icon  name="remove"></ion-icon>
+                  </button>
+                  <button ion-button *ngIf="!item.opened" icon-only (click)="openDelivery(item.id)">
+                    <ion-icon  name="add"></ion-icon>
+                  </button>
+                </div>
+              </ion-row>
+              <ion-row class="place-goto-wrapper">
+                <button ion-button (click)="goInnerPlace(placeId)" class="place-goto">Перейти к заведению</button>
+              </ion-row>
+            </ion-grid>
+          </ion-item>
+        </ion-list>
+      </ion-slide>
+      
+    </ion-slides>
+  </div>
 </ion-content>

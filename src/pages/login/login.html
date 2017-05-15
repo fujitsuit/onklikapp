@@ -10,18 +10,18 @@
 		<div class="login-logo">
 			<img src="assets/logo.svg" alt="">
 		</div>
-		<form (ngSubmit)="login()" #registerForm="ngForm">
-		<div class="login-form">
+		<form (ngSubmit)="login()" class="login-wrapper" #registerForm="ngForm">
+		<div class="login-form"> 
 			<div class="login-title">
-				Вход
+				Вход 
 			</div>
 			<div class="login-input-list">
 				<div class="login-input-row">
-					<div class="login-input-icon login-input-icon-user"></div>
+					<ion-icon name="person"></ion-icon> 
 					<input type="text" placeholder="E-mail адрес" class="login-input-item"   name="email" [(ngModel)]="registerCredentials.email">
 				</div>
 				<div class="login-input-row">
-					<div class="login-input-icon login-input-icon-lock"></div>
+					<ion-icon name="lock"></ion-icon>
 					<input type="password" placeholder="password" class="login-input-item"  name="password" [(ngModel)]="registerCredentials.password">
 				</div>
 			</div>
@@ -31,10 +31,10 @@
 
 		</div>
 		<div class="login-forgot"> 
-			<ion-item>Забыли пароль?</ion-item>
+			<ion-item (click)="goForgot()">Забыли пароль?</ion-item>
 		</div>
 		<div class="login-register">
-			<ion-item>Регистрация</ion-item>
+			<ion-item (click)="goSignup()">Регистрация</ion-item>
 		</div>
 		</form>
 	</div> 

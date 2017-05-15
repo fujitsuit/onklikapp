@@ -30,9 +30,9 @@ export class DeliverySubmitPage {
       time: new Date().toISOString(),
       message: ''
     }
-    this.InitCartCur();
+    this.getCartCur();
   }
-  InitCartCur(){
+  getCartCur(){
     for(let i=0; this.cart.placeCart.length -1 >= i; i++){
       if(this.cart.placeCart[i].placeId ==  this.navParams.get('placeId') ){
         this.cartCur = this.cart.placeCart[i];

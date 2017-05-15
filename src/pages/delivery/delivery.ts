@@ -3,8 +3,10 @@ import { NavController, NavParams, MenuController } from 'ionic-angular';
 import { DeliveryPlacePage } from '../delivery-place/delivery-place';
 
 import { AuthService } from '../../providers/auth-service';
-import { DeliveryCart } from '../../providers/delivery-cart';
+import { DeliveryCart, DeliveryPlaces } from '../../providers/delivery-cart';
+import { Injectable } from '@angular/core';
 
+@Injectable()
 /*
   Generated class for the Delivery page.
 
@@ -18,20 +20,13 @@ import { DeliveryCart } from '../../providers/delivery-cart';
 export class DeliveryPage {
 
 	searchQuery: string = '';
-  places: any[];
+  //places: any[];
 	filter: any;
-	filters = {};
-  count:number;
-	constructor(public menuCtrl: MenuController, public navCtrl: NavController, public navParams: NavParams, public api:AuthService, public cart: DeliveryCart) {
+	//filters = {};
+  //count:number;
+	constructor(public menuCtrl: MenuController, public navCtrl: NavController, public navParams: NavParams, public api:AuthService, public cart: DeliveryCart, public delivery: DeliveryPlaces) {
     
-    this.api.delivery().subscribe(r => {
-        this.places = r;
-        this.count = r.length;
-    })
-
-		this.api.deliveryfilter().subscribe(r => {
-        this.filters = r;
-    })  
+    
 	
   	this.filter = {
 			placeCity: 1,
@@ -43,13 +38,15 @@ export class DeliveryPage {
 				upper: 25000
 			}
 		};
-
 	}
-  
+  isEmptyObject(obj) {
+    return (Object.keys(obj).length === 0);
+  }
   goInner(id){
       this.navCtrl.push(DeliveryPlacePage, {
         placeId: id
       });
+    
   }
 
   closeMenu(){
@@ -76,6 +73,7 @@ getStars(x: number, y:number){
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DeliveryPage');
+    console.log(this.delivery.places);
     this.menuCtrl.enable(false, 'menu-right');
     this.menuCtrl.enable(true, 'deliveryFilter');
   }

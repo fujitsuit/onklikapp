@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { MenuController, NavController, NavParams,  AlertController, LoadingController, Loading } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { CheckinInnerPage } from '../checkin-inner/checkin-inner';
+import { SignupPage } from '../signup/signup';
+import { ForgotPage } from '../forgot/forgot';
 import { AuthService } from '../../providers/auth-service';
 
 @Component({
@@ -42,7 +44,12 @@ export class LoginPage {
     });
 
   }
-  
+  goForgot(){
+    this.nav.setRoot(ForgotPage)
+  }
+  goSignup(){
+    this.nav.setRoot(SignupPage)
+  }
   showLoading() {
     this.loading = this.loadingCtrl.create({
       content: 'Загрузка...'

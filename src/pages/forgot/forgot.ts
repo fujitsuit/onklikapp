@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { Nav, NavController, NavParams } from 'ionic-angular';
 
+import { LoginPage } from '../login/login';
 /*
   Generated class for the Forgot page.
 
@@ -13,8 +14,16 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class ForgotPage {
 
+  signupForm = {email: ''};
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {}
 
+  forgot(){
+    console.log(this.signupForm);
+  }
+  goLogin(){
+    this.navCtrl.setRoot(LoginPage);
+  }
   ionViewDidLoad() {
     console.log('ionViewDidLoad ForgotPage');
   }

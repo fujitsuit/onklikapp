@@ -122,16 +122,7 @@ export class AuthService {
                          })   
                    });
        }      
-   public deliveryfilter(){
-   return Observable.create(observer => {
-        this.http.get('https://onklik.kz/api/deliveryfilter') // ...using post request ha ha ha 
-                         .map((res:Response) => res.json())
-                         .subscribe(r => {
-                          observer.next(r);
-                          observer.complete();                           
-                         })   
-                   });
-       }   
+   
 
   public bookingfilter(filters){
    return Observable.create(observer => {
@@ -168,27 +159,6 @@ export class AuthService {
     });
   }
 
-   public delivery(){
-     return Observable.create(observer => {
-          this.http.get('https://onklik.kz/api/delivery') // ...using post request ha ha ha 
-                           .map((res:Response) => res.json())
-                           .subscribe(r => {
-                            observer.next(r);
-                            observer.complete();                           
-                           }) // ...and calling .json() on the response to return data
-                           //.catch((error:any) => Observable.throw(error.json().error || 'Server error')); //...errors if any
-        });
-   }    
-   public deliveryplace(id){
-     return Observable.create(observer => {
-          this.http.get('https://onklik.kz/api/deliveryplace?id='+id) // ...using post request ha ha ha 
-                           .map((res:Response) => res.json())
-                           .subscribe(r => {
-                            observer.next(r);
-                            observer.complete();                           
-                           }) // ...and calling .json() on the response to return data
-                           //.catch((error:any) => Observable.throw(error.json().error || 'Server error')); //...errors if any
-        });
-   } 
+   
 
 }	

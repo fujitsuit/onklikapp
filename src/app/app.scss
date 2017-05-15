@@ -173,6 +173,12 @@
 .app{
 	&-menu{
 		font-family: 'HelveticaNeueCyr',sans-serif;
+		&-btn{
+			width: 44px;
+			height: 32px;
+			margin-right:6px; 
+			background-color: transparent;
+		}
 	}
 	&-header{
 		box-shadow: 0 0 10px -3px #000;
@@ -194,6 +200,10 @@
 	}
 	&-logo{
 		text-align: center;
+		color: #fff;
+		.toolbar-title{
+			color:#fff;
+		}
 		img{
 			width: 130px;
 			align-self:center;
@@ -235,11 +245,23 @@
 		}
 	}
 	&-list{
-		margin-top: 10px;
-	    margin-bottom: 15px;
+		padding-top: 10px;
+		padding-bottom: 15px;
+		margin:0;
+		&-hl{
+			border-bottom:1px solid #ccc;
+		}
 		&-item{
 			font-size: 15px;
 			min-height: 40px!important;
+
+			&.active{
+				background-color: #2dba4a;
+				color:#fff;
+				ion-icon{
+					color:#fff;
+				}
+			}
 			&:first-child{
 				border-top: none!important;
 			}
@@ -255,9 +277,20 @@
 				margin: 0;
 				padding: 5px 0;
 			}
+			ion-icon{
+				font-size: 26px;
+				width: 25px;
+				height: 28px;
+				display: inline-block;
+				position: relative;
+				vertical-align: middle;
+				text-align: center;
+				margin-right: 5px;
+				color:#22b54e;
+			}
 			&-icon{
 				width: 20px;
-				height: 20px;
+				height: 28px;
 				margin-right: 5px;
 				background-image: url(../assets/icon/menu-icons.svg);
 				background-size: 43px;
@@ -279,11 +312,11 @@
 
 				}
 				&.favourite{
-					background-position-y: -103px;
-
+					
+					background-position-y: -125px;
 				}
 				&.trash{
-					background-position-y: -125px;
+					background-position-y: -103px;
 
 				}
 				&.wrench{

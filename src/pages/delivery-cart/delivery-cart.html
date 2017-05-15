@@ -22,7 +22,7 @@
     <ion-list-header class="cart-header">
       Доставка
     </ion-list-header>
-    <div *ngFor="let item of items" class="cart-item">
+    <div *ngFor="let item of cartCur.items" class="cart-item">
       <button (click)="remove(item.id)" icon-only ion-button class="cart-item-remove">
         <ion-icon name="close"></ion-icon>
       </button>

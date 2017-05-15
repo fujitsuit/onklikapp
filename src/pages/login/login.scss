@@ -5,7 +5,9 @@ page-login {
 		background-position: center;
 		font-family: "Roboto", sans-serif;
 	.login{
-		
+		&-wrapper{
+			width: 100%;
+		}
 		&-block{
 			display: flex;
 			flex-direction: column;
@@ -35,24 +37,19 @@ page-login {
 			&-row{
 				margin-bottom: 20px;
 				position: relative;
-			}
-			&-icon{
-				content: '';
+				ion-icon{
 			    position: absolute;
-			    left: 14px;
-			    top: 0;
-			    width: 16px;
-			    height: 40px;
-			    background-repeat: no-repeat;
-			    background-size: 100%;
-			    background-position: center;
-				&-user{
-					background-image: url(../assets/icon/user.svg);
-				}
-				&-lock{
-					background-image: url(../assets/icon/lock.svg);
+					left: 12px;
+					top: 0;
+					width: 23px;
+					height: 40px;
+					line-height: 41px;
+					font-size: 20px;
+					text-align: center;
+					color:#454545;
 				}
 			}
+			
 			&-list{
 				position: relative;
 				width: 100%;

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { Nav, NavController, NavParams } from 'ionic-angular';
+
+import { LoginPage } from '../login/login';
 
 /*
   Generated class for the Signup page.
@@ -13,8 +15,18 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class SignupPage {
 
+
+  signupForm = {email: '', password: '',name: '', tel:'' };
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {}
 
+
+  goLogin(){
+    this.navCtrl.setRoot(LoginPage);
+  }
+  signup(){
+    console.log(this.signupForm);
+  }
   ionViewDidLoad() {
     console.log('ionViewDidLoad SignupPage');
   }

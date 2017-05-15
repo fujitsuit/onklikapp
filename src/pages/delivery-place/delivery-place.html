@@ -11,9 +11,11 @@
     </button>
     <ion-title class="app-logo"><img src="assets/logo.svg"></ion-title>
      <ion-buttons end>
-      <button *ngIf="cart.status == true" ion-button icon-only (click)="goCart()">
-        <ion-icon name="cart"></ion-icon>
+      <button *ngIf="cartCur.status == true" class="app-menu-btn" ion-button icon-right (click)="goCart()">
+        {{cartCur.items.length}} 
+				<ion-icon name="cart"></ion-icon>
       </button>
+			<div *ngIf="cartCur.status == false" class="app-menu-btn"></div>
     </ion-buttons> 
   </ion-navbar>
 </ion-header>

@@ -7,7 +7,7 @@ import { DeliveryCartPage } from '../delivery-cart/delivery-cart';
 import { InnerPlaceSharePage } from '../inner-place-share/inner-place-share';
 
 import { AuthService } from '../../providers/auth-service';
-import { DeliveryCart } from '../../providers/delivery-cart';
+import { DeliveryCart,DeliveryPlaces } from '../../providers/delivery-cart';
 /*
   Generated class for the InnerPlace page.
 
@@ -46,7 +46,7 @@ export class DeliveryPlacePage {
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-  constructor(private formBuilder: FormBuilder, public navCtrl: NavController, public navParams: NavParams, public api:AuthService, public cart: DeliveryCart) {
+  constructor(private formBuilder: FormBuilder, public navCtrl: NavController, public navParams: NavParams, public api:AuthService, public cart: DeliveryCart, public delivery: DeliveryPlaces) {
   	this.placeContent = "0";
   	this.favourite = false;
   	this.newTesti = this.formBuilder.group({
@@ -70,13 +70,31 @@ export class DeliveryPlacePage {
   	this.getPlaceMenuCat( 1 , this.placeMenu)
 
 
-		this.InitCartCur();
+		console.log(this.cartCur);
+		this.cartCur = {};
+
+
+		this.cartCur = this.cart.InitCartCur(navParams.get('placeId'));
+
+
+		console.log(this.cartCur.status)
+		console.log(navParams.get('placeId') + 'clicked place')
+		console.log(this.cartCur)
+  }
+
+
+	InitCartCur(){
+    for(let i=0; this.cart.placeCart.length -1 >= i; i++){
+      if(this.cart.placeCart[i].placeId ==  this.navParams.get('placeId') ){
+        this.cartCur = this.cart.placeCart[i];
+      }
+    }
   }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
     initializeDeliveryplace(id) {
-    	this.api.deliveryplace(id).subscribe(r => {
+    	this.delivery.deliveryplace(id).subscribe(r => {
       		this.deliveryplace = r
     	})
   	}
@@ -90,28 +108,20 @@ export class DeliveryPlacePage {
   onScroll() {
   	let $segments = document.getElementById('segments');
   	let $segmentsStart = document.getElementById('segments-start');
-    console.log('dd');
 
   	let scrollTop = this.contentq.getContentDimensions().scrollTop;
   		
-	let segmentsClasses = $segments.classList;
+		let segmentsClasses = $segments.classList;
 
-	if($segmentsStart.offsetTop < scrollTop){
-		segmentsClasses.add('sticky');
-	}else{
-		segmentsClasses.remove('sticky');
-	}
+		if($segmentsStart.offsetTop < scrollTop){
+			segmentsClasses.add('sticky');
+		}else{
+			segmentsClasses.remove('sticky');
+		}
 
   }
 
-	InitCartCur(){
-    for(let i=0; this.cart.placeCart.length -1 >= i; i++){
-      if(this.cart.placeCart[i].placeId == this.navParams.get('placeId') ){
-        this.cartCur = this.cart.placeCart[i];
-      }
-    }
-		console.log(this.cart.status)
-  }
+	
 
 
   onSegmentChanged(segmentButton) {

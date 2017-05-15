@@ -1,3 +1,205 @@
 page-my-favourite {
+  .content, .content-ios,.content-md,.content-md{
+			background-image: url(../assets/bg/bg-home.jpg);
+	    	background-size: cover;
+	    	min-height: 100%;
+    .delivery{
+			&-place{
+				ion-thumbnail{
+					img{
+						border-radius: 50%;
+					}
+				}
+			}
+			&-cart{
+				position: absolute;
+				right: 0;
+				top: 0;
+				height: 30px;
+				width: 40px;
+				background-color: #4dc73b;
+				color: #fff;
+				text-align: center;
+				padding-top: 5px;
+				box-shadow: 0 0 7px -2px #000;
+			}
+		}
+    .swiper-slide{
+      align-items: flex-start;
+			height: 0;
+			&-active{
+        height: auto;
+      }
+    }
+		.slider-wrapper{
+      margin: 0 10px 0 10px;
+      overflow: hidden;
+    }
+    .place{
+      &-tab{
+				&-list{
+					margin: 5px 0;
+					position:absolute;
+					transition: .4s;
+					&.sticky{
+						position: fixed;
+						top:60px;
+						z-index: 10;
+						background-color: rgba(255,255,255,.95);
+						margin:0;
+						padding-top:0px;
+					}
+					&-wrapper{
+						height: 52px;
+						position: relative;
 
+					}
+				}
+				&-item{
+					background-color: transparent;
+					border: none;
+					color: #000;
+					font-size: 14px;
+					margin: 0 3px;
+					padding: 0;
+					border-radius: 0;
+					&:first-of-type,&:last-of-type{
+						border-radius: 0;
+					}
+					&.segment-activated{
+						background-color: transparent;
+						color: #22b54e;
+						border-bottom: 2px solid #22b54e;
+					}
+				}
+			}
+    }
+		.c-place{
+			margin: 0;
+			width: 100%!important;
+			position: relative;
+			color:#fff;
+			height: 150px;
+			margin-bottom: 7px;
+			border-radius: 0;
+			>img{
+				width: 100vw;
+				height: 100%;
+				object-fit: cover;
+			}
+			ion-grid{
+				position: absolute;
+				width: 100%;
+				top: 0;
+				bottom: 0;
+				background-color: rgba(0,0,0,.5);
+			}
+			ion-row{
+				height: 100%;
+			}
+			&-btn{
+				border-radius:5px;
+				border: 1px solid #fff;
+				box-shadow: none;
+				text-transform: none;
+				color:#fff;
+				height: 36px;
+				font-size: 16px;
+				line-height: 20px;
+				padding: 0;
+				&.primary{
+					background: #22b54e;
+					background: -moz-linear-gradient(left,  #22b54e 0%, #52c939 100%);
+					background: -webkit-linear-gradient(left,  #22b54e 0%,#52c939 100%);
+					background: linear-gradient(to right,  #22b54e 0%,#52c939 100%);
+					filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#22b54e', endColorstr='#52c939',GradientType=1 );
+				}
+				&.hollow{
+					background-color: rgba(255,255,255,.3);
+				}
+			}
+			&-desc{
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				padding-left:0;
+				padding-right:0;
+        text-align: left;
+			}
+			&-title{
+				font-size: 16px;
+				margin-bottom: 5px;
+			}
+			&-address{
+				font-size: 14px;
+				margin-bottom: 5px;
+			}
+			
+			&-rating{
+				display: flex;
+				align-items:center;
+				&-stars{
+					display: flex;
+				}
+				&-count{
+					line-height: 18px;
+					vertical-align: bottom;
+				}
+			}
+			&-star{
+				color: #ffba00;
+				margin-right:5px;
+			}
+		}
+		ion-content{
+			background-image: url(../assets/bg/bg-home.jpg);
+			background-size: cover;
+		}
+		.searchbar-md, .searchbar-ios, .searchbar-wp{
+			height: 60px;
+			background: none;
+			padding: 10px 20px;
+			.searchbar-input-container{
+				border: none;
+			}
+			.searchbar-search-icon{
+				display: none;
+			}
+			.searchbar-input{
+				padding: 0 15px !important;
+				border: 1px solid #cccccc;
+				border-radius: 4px;
+				height: 40px;
+				line-height: 40;
+				box-shadow:none;
+			}
+		}
+		.ic{
+			display: inline-block;
+			height: 15px;
+			width: 15px;
+			background-size: 100%;
+			margin-right: 5px;
+			line-height: 20px;
+			&-clock{
+				background-image: url(../assets/icon/clock-1.svg);
+			}
+			&-tel{
+				background-image: url(../assets/icon/phone.svg);
+				margin-right: 0px;
+			}
+		}
+	}
+	.card{
+		&-status{
+			font-family: 'Roboto';
+			font-weight: bold;
+			&-closed{
+				color:#ff0202;
+			}
+			&-open{
+				color:#51c93a;
+			}
+		}
+	}
 }

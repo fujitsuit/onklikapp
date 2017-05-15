@@ -26,21 +26,22 @@ export class MyApp {
 
   sections: Array<{title: string, component: any, icon: string}>;
   pages: Array<{title: string, component: any, icon: string}>;
-
+  activePage: any;
 
   constructor(public platform: Platform,public menuCtrl: MenuController, storage: Storage, public cart:Cart) {
     this.initializeApp();
     this.sections = [      
-      { title: 'Заведения', component: HomePage, icon: "checkin"},
-      { title: 'Check In', component: CheckinPage, icon: "checkin"},
-      { title: 'Доставка', component: DeliveryPage, icon: "checkin"},
-      { title: 'Избранное', component: MyFavouritePage, icon: "checkin"},
-      { title: 'История', component: MyStoryPage, icon: "checkin"}
+      { title: 'Заведения', component: HomePage, icon: "restaurant"},
+      { title: 'Check In', component: CheckinPage, icon: "checkmark-circle-outline"},
+      { title: 'Доставка', component: DeliveryPage, icon: "car"},
+      { title: 'Избранное', component: MyFavouritePage, icon: "star"},
+      { title: 'История', component: MyStoryPage, icon: "bookmarks"}
     ];
     this.pages = [
-      { title: 'Мой профиль', component: MyProfilePage, icon: "profile" },
-      { title: 'Настройки', component: MyOptionsPage, icon: "wrench" }
-    ]
+      { title: 'Мой профиль', component: MyProfilePage, icon: "person" },
+      { title: 'Настройки', component: MyOptionsPage, icon: "settings" }
+    ];
+    this.activePage = this.sections[0];
 }
 
   goCheckCart(){
@@ -55,6 +56,10 @@ export class MyApp {
 
   openPage(page) {
     this.nav.setRoot(page.component);
+    this.activePage = page;
+  }
+  checkActive(page){
+    return page == this.activePage;
   }
   logoutApp(){
     this.menuCtrl.swipeEnable(false);

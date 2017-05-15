@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
-import { DeliveryCart } from '../../providers/delivery-cart';
+import { DeliveryCart, DeliveryPlaces } from '../../providers/delivery-cart';
 
 /*
   Generated class for the DeliveryDish page.
@@ -20,7 +20,7 @@ export class DeliveryDishPage {
 	dishType: any;
   cartCur: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public cart: DeliveryCart) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public cart: DeliveryCart, public delivery: DeliveryPlaces) {
   	this.initializeDish();
   	
   	this.dishCurr = {
@@ -101,12 +101,10 @@ export class DeliveryDishPage {
       for(let i=0; this.cart.placeCart.length -1 >= i; i++){
         console.log('looped' + i);
 
-
-
         if(this.cart.placeCart[i].placeId == this.dishCurr.placeId ){
 
-
-          console.log('Existed '+ this.dishCurr.placeId);
+          console.log('Existed '+ i);
+          this.cart.placeCart[i].status = true;
           this.cart.placeCart[i].items.push(this.dishType);
           notExisted = false;
         }else{
@@ -134,9 +132,7 @@ export class DeliveryDishPage {
         items: [this.dishType]
       });
     }
-
-    this.cart.status = true;
-
+    this.delivery.setCarts();
     this.navCtrl.pop();
   }
   getDishInfo(id, array){

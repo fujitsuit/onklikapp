@@ -32,7 +32,20 @@ page-delivery {
 					}
 				}
 			}
+			&-cart{
+				position: absolute;
+				right: 0;
+				top: 0;
+				height: 30px;
+				width: 40px;
+				background-color: #4dc73b;
+				color: #fff;
+				text-align: center;
+				padding-top: 5px;
+				box-shadow: 0 0 7px -2px #000;
+			}
 		}
+		
 		.card{
 			&-status{
 				font-family: 'Roboto';

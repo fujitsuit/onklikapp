@@ -50,7 +50,8 @@ import { ModalGalleryPage } from '../pages/modal-gallery/modal-gallery';
 //Providers
 import { AuthService } from '../providers/auth-service';
 import { Cart } from '../providers/checkin-cart';
-import { DeliveryCart } from '../providers/delivery-cart';
+import { History } from '../providers/history';
+import { DeliveryCart, DeliveryPlaces } from '../providers/delivery-cart';
 
 
 
@@ -137,7 +138,9 @@ import { DeliveryCart } from '../providers/delivery-cart';
         { provide: LOCALE_ID, useValue: "ru-RU" },
         AuthService,
         Cart,
-        DeliveryCart
+        DeliveryCart,
+        DeliveryPlaces,
+        History
     ]
 })
 export class AppModule {}
